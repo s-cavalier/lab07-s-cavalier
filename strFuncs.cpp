@@ -1,5 +1,7 @@
 #include "strFuncs.h"
 #include <cctype>
+#include <cstring>
+#include <string>
 
 using namespace std;
 
@@ -11,6 +13,13 @@ using namespace std;
  *
  *You should provide a recursive solution*/
 bool isPalindrome(const string s1){
+    char start = tolower(s1[0]);
+    char end = tolower(s1[s1.size() - 1]);
+    bool out = true;
+    if (start != end) return false;
+    if (s1.size() < 3 && start == end) return true;
+
+    out = isPalindrome(s1.substr(1, s1.size() - 2));
     //STUB: Replace the following with the correct code.
-    return true;
+    return out;
 }
