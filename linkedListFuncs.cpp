@@ -128,13 +128,19 @@ Node* recursiveElementwiseSum(Node *head1, Node *head2) {
  */
 Node* recursiveSplice(Node *head1, Node *head2) {
     if (head1 == NULL) return head2;
-    if (head1->next == NULL) {
-        head1->next = head2;
-        return head1;
+    Node* current1 = head1;
+    Node* current2 = head2;
+    Node* temp1, *temp2;
+
+    while (current1 != NULL && current2 != NULL) {
+        temp1 = current1->next;
+        temp2 = current2->next;
+        current1->next = current2;
+        current2->next = temp1;
+        current1 = temp1;
+        current2 = temp2;
     }
-    Node* kick = recursiveSplice(head1->next, head2->next);
-    head1->next = head2;
-    head1->next->next = kick;
+
     return head1;
     //STUB: edit with the correct output, according to the lab instructions, using recursion
 }
